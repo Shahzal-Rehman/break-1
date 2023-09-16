@@ -21,10 +21,12 @@ function startTimer() {
                     clearInterval(timer);
                     isRunning = false;
                     document.getElementById('startButton').textContent = 'Start';
+                    enableInput(); // Enable user input after the timer finishes
                 }
             }, 1000);
             isRunning = true;
             document.getElementById('startButton').textContent = 'Pause';
+            disableInput(); // Disable user input when the timer starts
         } else {
             alert('Invalid input. Please enter a valid number greater than 0.');
         }
@@ -32,6 +34,7 @@ function startTimer() {
         clearInterval(timer);
         isRunning = false;
         document.getElementById('startButton').textContent = 'Resume';
+        enableInput(); // Enable user input when the timer is paused
     }
 }
 
@@ -41,6 +44,17 @@ function resetTimer() {
     isRunning = false;
     document.getElementById('countdown').textContent = '00:00:00';
     document.getElementById('startButton').textContent = 'Start';
+    enableInput(); // Enable user input when the timer is reset
+}
+
+function disableInput() {
+    document.getElementById('startButton').disabled = true;
+    document.getElementById('resetButton').disabled = true;
+}
+
+function enableInput() {
+    document.getElementById('startButton').disabled = false;
+    document.getElementById('resetButton').disabled = false;
 }
 
 document.getElementById('startButton').addEventListener('click', startTimer);
