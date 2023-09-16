@@ -1,45 +1,47 @@
-const countdownElement = document.getElementById('countdown');
-const welcomeMessage = document.getElementById('welcome-message');
-const starsContainer = document.getElementById('stars-container');
-let seconds = 0; // Initialize to 0
+let timer;
+let isRunning = false;
+let seconds = 0;
 
-// Function to prompt the user for the timer limit
-function setTimerLimit() {
-    const limit = prompt('Set the timer limit (in seconds):');
-    if (limit !== null && !isNaN(limit)) {
-        seconds = parseInt(limit);
-        startTimer();
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+}
+
+function startTimer() {
+    if (!isRunning) {
+        const userInput = prompt('Enter timer duration in seconds:');
+        if (userInput !== null && !isNaN(userInput) && userInput > 0) {
+            seconds = parseInt(userInput);
+            timer = setInterval(function () {
+                seconds--;
+                document.getElementById('countdown').textContent = formatTime(seconds);
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    isRunning = false;
+                    document.getElementById('startButton').textContent = 'Start';
+                }
+            }, 1000);
+            isRunning = true;
+            document.getElementById('startButton').textContent = 'Pause';
+        } else {
+            alert('Invalid input. Please enter a valid number greater than 0.');
+        }
     } else {
-        alert('Invalid input. Please enter a valid number for the timer limit.');
+        clearInterval(timer);
+        isRunning = false;
+        document.getElementById('startButton').textContent = 'Resume';
     }
 }
 
-// Function to start the timer
-function startTimer() {
-    if (seconds <= 0) {
-        alert('Timer limit must be greater than 0.');
-        setTimerLimit();
-        return;
-    }
+function resetTimer() {
+    clearInterval(timer);
+    seconds = 0;
+    isRunning = false;
+    document.getElementById('countdown').textContent = '00:00:00';
+    document.getElementById('startButton').textContent = 'Start';
+}
 
-    const timer = setInterval(function() {
-        countdownElement.textContent = formatTime(seconds);
-        seconds--;
-
-        if (seconds < 0) {
-            clearInterval(timer);
-            document.body.style.backgroundColor = '#000';
-            starsContainer.style.display = 'none'; // Hide stars container
-            welcomeMessage.style.display = 'block'; // Show the "Welcome back" message
-            sparkleStars(); // Add sparkling effect
-            // Enable user input after the break (e.g., after 1000 seconds)
-            setTimeout(function() {
-                enableInput();
-                welcomeMessage.style.display = 'none'; // Hide "Welcome back" message
-                starsContainer.style.display = 'block'; // Show stars container
-                resetStars(); // Reset sparkling effect
-            }, 1000 * seconds);
-            return;
-        }
-
-        const brightness = (100 - seconds * 5)
+document.getElementById('startButton').addEventListener('click', startTimer);
+document.getElementById('resetButton').addEventListener('click', resetTimer);
