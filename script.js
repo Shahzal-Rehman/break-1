@@ -22,24 +22,40 @@ function startTimer() {
     }
 
     const timer = setInterval(function() {
-        countdownElement.textContent = seconds;
+        countdownElement.textContent = formatTime(seconds);
         seconds--;
 
         if (seconds < 0) {
             clearInterval(timer);
             document.body.style.backgroundColor = '#000';
-            // Show the welcome message when the timer reaches 0
+            // Show the "Welcome back" message
             welcomeMessage.style.display = 'block';
             // Disable user input during the break
             disableInput();
-            // Enable user input after the break (e.g., after 20 seconds)
-            setTimeout(enableInput, 1000000); // 1000 seconds
+            // Enable user input after the break (e.g., after 1000 seconds)
+            setTimeout(function() {
+                enableInput();
+                welcomeMessage.style.display = 'none'; // Hide "Welcome back" message
+            }, 1000 * seconds);
             return;
         }
 
         const brightness = (100 - seconds * 5) + '%';
         document.body.style.backgroundColor = `hsl(0, 0%, ${brightness})`;
     }, 1000);
+}
+
+// Format time as "HH:MM:SS"
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${padZero(hours)}:${padZero(minutes)}:${padZero(remainingSeconds)}`;
+}
+
+// Add leading zero to single-digit numbers
+function padZero(number) {
+    return (number < 10) ? `0${number}` : number;
 }
 
 // Prompt the user to set the timer limit when the page loads
