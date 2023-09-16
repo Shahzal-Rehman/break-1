@@ -3,6 +3,7 @@ body {
     background-color: #000; /* Black background color */
     position: relative;
     overflow: hidden; /* Hide overflow to prevent scrollbars */
+    animation: zoomInOut 30s alternate infinite; /* Adjust the duration and timing as needed */
 }
 
 .star {
@@ -36,36 +37,35 @@ body {
     animation: twinkle 5s infinite alternate;
 }
 
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1); /* Start at normal size */
+    }
+    100% {
+        transform: scale(1.1); /* End at 110% size (zoomed in) */
+    }
+}
+
 @keyframes twinkle {
     0% {
         background-color: transparent;
+        transform: translateY(0);
     }
     50% {
         background-color: #fff; /* White color for stars */
+        transform: translateY(-10px);
     }
     100% {
         background-color: transparent;
+        transform: translateY(0);
     }
 }
 
-.timer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-    z-index: 1;
-}
+/* Create stars using the .star class */
+.star:nth-child(1) { top: 10%; left: 20%; }
+.star:nth-child(2) { top: 20%; left: 80%; }
+.star:nth-child(3) { top: 30%; left: 40%; }
+/* Add more stars as needed */
 
-.timer {
-    font-size: 3rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 2;
-}
-
-.hidden {
-    display: none;
-}
+/* Continue adding stars... */
+.star:nth-child(100) { top: 70%; left: 60%; }
