@@ -21,6 +21,7 @@ function startTimer() {
                     clearInterval(timer);
                     isRunning = false;
                     document.getElementById('countdown').textContent = '00:00:00';
+                    showWelcomeMessage(); // Display the welcome message
                 }
             }, 1000);
             isRunning = true;
@@ -28,6 +29,11 @@ function startTimer() {
             alert('Invalid input. Please enter a valid number greater than 0.');
         }
     }
+}
+
+function showWelcomeMessage() {
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    welcomeMessage.style.display = 'block';
 }
 
 // Start the timer when the page loads
