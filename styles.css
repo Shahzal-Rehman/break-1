@@ -1,12 +1,53 @@
 /* Add your custom styles here */
+body {
+    background-color: #000; /* Start with a black background */
+    position: relative;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+    animation: fadeInBackground 2s forwards; /* Add a fade-in animation for the background */
+    animation-delay: 1s; /* Delay the animation for 1 second (adjust as needed) */
+    animation-iteration-count: 1; /* Run the animation only once */
+}
+
+@keyframes fadeInBackground {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1; /* Fade in to full opacity */
+    }
+}
+
 .timer-container {
     text-align: center;
     margin-top: 50px;
+    opacity: 1; /* Initially show the timer container */
+    position: relative;
+}
+
+.timer-circle {
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px; /* Adjust the size of the circle */
+    background-color: #777; /* Gray circle color */
+    border-radius: 50%; /* Make it a circle */
+    margin: 0 auto; /* Center the circle horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: colorFadeInOut 2s alternate infinite; /* Add color fade-in and fade-out animation */
+}
+
+@keyframes colorFadeInOut {
+    0%, 100% {
+        background-color: #777; /* Start and end with gray */
+    }
+    50% {
+        background-color: #555; /* Middle of animation with a different color */
+    }
 }
 
 #countdown {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 3rem; /* Increase the timer font size */
+    color: #fff; /* White color for the timer */
 }
 
 #startButton, #resetButton {
@@ -14,4 +55,12 @@
     padding: 5px 10px;
     margin-right: 10px;
     cursor: pointer;
+    background-color: #333; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+}
+
+#startButton:hover, #resetButton:hover {
+    background-color: #555; /* Hover state background color */
 }
