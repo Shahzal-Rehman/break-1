@@ -1,6 +1,51 @@
 /* Add your custom styles here */
 body {
-    transition: background-color 1s ease-in-out;
+    background-color: #000; /* Black background color */
+    position: relative;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+}
+
+.star {
+    position: absolute;
+    background-color: transparent;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    animation: twinkle 5s infinite;
+}
+
+.star::before,
+.star::after {
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+}
+
+.star::before {
+    top: -10px;
+    left: -10px;
+    animation: twinkle 5s infinite alternate;
+}
+
+.star::after {
+    top: 10px;
+    left: 10px;
+    animation: twinkle 5s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #fff; /* White color for stars */
+    }
+    100% {
+        background-color: transparent;
+    }
 }
 
 .timer-container {
@@ -8,16 +53,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .timer {
     font-size: 3rem;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 5px;
+    position: relative;
+    z-index: 2;
 }
 
 .hidden {
     display: none;
 }
-
