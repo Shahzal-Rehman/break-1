@@ -24,12 +24,23 @@
 
         function startTimer() {
             if (!isRunning) {
-                timer = setInterval(function () {
-                    seconds++;
-                    document.getElementById('countdown').textContent = formatTime(seconds);
-                }, 1000);
-                isRunning = true;
-                document.getElementById('startButton').textContent = 'Pause';
+                const userInput = prompt('Enter timer duration in seconds:');
+                if (userInput !== null && !isNaN(userInput) && userInput > 0) {
+                    seconds = parseInt(userInput);
+                    timer = setInterval(function () {
+                        seconds--;
+                        document.getElementById('countdown').textContent = formatTime(seconds);
+                        if (seconds <= 0) {
+                            clearInterval(timer);
+                            isRunning = false;
+                            document.getElementById('startButton').textContent = 'Start';
+                        }
+                    }, 1000);
+                    isRunning = true;
+                    document.getElementById('startButton').textContent = 'Pause';
+                } else {
+                    alert('Invalid input. Please enter a valid number greater than 0.');
+                }
             } else {
                 clearInterval(timer);
                 isRunning = false;
