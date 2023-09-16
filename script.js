@@ -1,47 +1,46 @@
 const countdownElement = document.getElementById('countdown');
 const welcomeMessage = document.getElementById('welcome-message');
-let seconds = 20;
+let seconds = 0; // Initialize to 0
 
-function disableInput() {
-    // Disable user input by adding a transparent div covering the entire page
-    const overlay = document.createElement('div');
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.backgroundColor = 'transparent';
-    overlay.style.zIndex = '9999';
-    document.body.appendChild(overlay);
-}
-
-function enableInput() {
-    // Remove the transparent overlay to enable user input
-    const overlay = document.querySelector('div');
-    if (overlay) {
-        document.body.removeChild(overlay);
+// Function to prompt the user for the timer limit
+function setTimerLimit() {
+    const limit = prompt('Set the timer limit (in seconds):');
+    if (limit !== null && !isNaN(limit)) {
+        seconds = parseInt(limit);
+        startTimer();
+    } else {
+        alert('Invalid input. Please enter a valid number for the timer limit.');
     }
 }
 
-function updateCountdown() {
-    countdownElement.textContent = seconds;
-    seconds--;
-
-    if (seconds < 0) {
-        clearInterval(timer);
-        document.body.style.backgroundColor = '#000';
-        // Show the welcome message when the timer reaches 0
-        welcomeMessage.style.display = 'block';
-        // Disable user input during the break
-        disableInput();
-        // Enable user input after the break (e.g., after 20 seconds)
-        setTimeout(enableInput, 20000); // 20 seconds
+// Function to start the timer
+function startTimer() {
+    if (seconds <= 0) {
+        alert('Timer limit must be greater than 0.');
+        setTimerLimit();
         return;
     }
 
-    const brightness = (100 - seconds * 5) + '%';
-    document.body.style.backgroundColor = `hsl(0, 0%, ${brightness})`;
+    const timer = setInterval(function() {
+        countdownElement.textContent = seconds;
+        seconds--;
+
+        if (seconds < 0) {
+            clearInterval(timer);
+            document.body.style.backgroundColor = '#000';
+            // Show the welcome message when the timer reaches 0
+            welcomeMessage.style.display = 'block';
+            // Disable user input during the break
+            disableInput();
+            // Enable user input after the break (e.g., after 20 seconds)
+            setTimeout(enableInput, 20000); // 20 seconds
+            return;
+        }
+
+        const brightness = (100 - seconds * 5) + '%';
+        document.body.style.backgroundColor = `hsl(0, 0%, ${brightness})`;
+    }, 1000);
 }
 
-updateCountdown();
-const timer = setInterval(updateCountdown, 1000);
+// Prompt the user to set the timer limit when the page loads
+setTimerLimit();
