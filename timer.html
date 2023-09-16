@@ -37,14 +37,14 @@
                         }
                     }, 1000);
                     isRunning = true;
-                    document.getElementById('startButton').textContent = 'Pause';
+
                 } else {
                     alert('Invalid input. Please enter a valid number greater than 0.');
                 }
             } else {
                 clearInterval(timer);
                 isRunning = false;
-                document.getElementById('startButton').textContent = 'Resume';
+
             }
         }
 
@@ -52,12 +52,9 @@
             clearInterval(timer);
             seconds = 0;
             isRunning = false;
-            document.getElementById('countdown').textContent = '00:00:00';
-            document.getElementById('startButton').textContent = 'Start';
-        }
+            document.getElementById('countdown').textContent = '00:00';
 
-        document.getElementById('startButton').addEventListener('click', startTimer);
-        document.getElementById('resetButton').addEventListener('click', resetTimer);
+        }
     </script>
 </body>
 </html>
