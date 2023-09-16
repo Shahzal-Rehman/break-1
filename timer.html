@@ -3,14 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Break Timer</title>
+    <title>Countdown Timer</title>
 </head>
 <body>
-    <div class="timer-container">
-        <div class="timer">
-            <span id="countdown">20</span>
-        </div>
-    </div>
-    <script src="https://github.com/SR123456789-maker/Break/blob/main/script.js"></script>
+    <div id="countdown">00:00:00</div>
+    <button id="startButton">Start</button>
+    <button id="resetButton">Reset</button>
+
+    <script>
+        let timer;
+        let isRunning = false;
+        let seconds = 0;
+
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                timer = setInterval(function () {
+                    seconds++;
+                    document.getElementById('countdown').textContent = formatTime(seconds);
+                }, 1000);
+                isRunning = true;
+                document.getElementById('startButton').textContent = 'Pause';
+            } else {
+                clearInterval(timer);
+                isRunning = false;
+                document.getElementById('startButton').textContent = 'Resume';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            seconds = 0;
+            isRunning = false;
+            document.getElementById('countdown').textContent = '00:00:00';
+            document.getElementById('startButton').textContent = 'Start';
+        }
+
+        document.getElementById('startButton').addEventListener('click', startTimer);
+        document.getElementById('resetButton').addEventListener('click', resetTimer);
+    </script>
 </body>
 </html>
