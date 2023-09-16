@@ -62,10 +62,26 @@ body {
 }
 
 /* Create stars using the .star class */
-.star:nth-child(1) { top: 10%; left: 20%; }
-.star:nth-child(2) { top: 20%; left: 80%; }
-.star:nth-child(3) { top: 30%; left: 40%; }
-/* Add more stars as needed */
+/* You can add more stars with different positions here */
 
-/* Continue adding stars... */
-.star:nth-child(100) { top: 70%; left: 60%; }
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.timer {
+    font-size: 3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 2;
+}
+
+.hidden {
+    display: none;
+}
