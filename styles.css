@@ -1,28 +1,23 @@
+/* Add your custom styles here */
 body {
-    background-color: #000;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+    transition: background-color 1s ease-in-out;
 }
 
 .timer-container {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .timer {
-    font-size: 4rem;
-    color: #fff;
-    animation: fadeIn 1s ease-in-out forwards;
+    font-size: 3rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+.hidden {
+    display: none;
 }
+
