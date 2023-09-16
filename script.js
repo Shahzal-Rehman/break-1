@@ -33,7 +33,7 @@ function startTimer() {
             // Disable user input during the break
             disableInput();
             // Enable user input after the break (e.g., after 20 seconds)
-            setTimeout(enableInput, 20000); // 20 seconds
+            setTimeout(enableInput, 1000000); // 1000 seconds
             return;
         }
 
