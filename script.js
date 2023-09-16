@@ -1,6 +1,6 @@
 let timer;
 let isRunning = false;
-let seconds = 1200; // 20 minutes in seconds (20 minutes * 60 seconds)
+let seconds = 0;
 
 function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
@@ -11,18 +11,24 @@ function formatTime(seconds) {
 
 function startTimer() {
     if (!isRunning) {
-        timer = setInterval(function () {
-            seconds--;
-            document.getElementById('countdown').textContent = formatTime(seconds);
-            if (seconds <= 0) {
-                clearInterval(timer);
-                isRunning = false;
-                document.getElementById('countdown').textContent = '00:00:00';
-            }
-        }, 1000);
-        isRunning = true;
+        const userInput = prompt('Enter timer duration in seconds:');
+        if (userInput !== null && !isNaN(userInput) && userInput > 0) {
+            seconds = parseInt(userInput);
+            timer = setInterval(function () {
+                seconds--;
+                document.getElementById('countdown').textContent = formatTime(seconds);
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    isRunning = false;
+                    document.getElementById('countdown').textContent = '00:00:00';
+                }
+            }, 1000);
+            isRunning = true;
+        } else {
+            alert('Invalid input. Please enter a valid number greater than 0.');
+        }
     }
 }
 
-// Start the timer automatically when the page loads
+// Start the timer when the page loads
 startTimer();
