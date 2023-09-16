@@ -5,24 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screen Break Timer</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Screen Break Timer</h1>
-    </header>
+    <div id="stars-container">
+        <!-- Stars will be dynamically generated here -->
+    </div>
     <div class="timer-container">
         <div class="timer">
-            <span id="countdown">20</span>
+            <span id="countdown">20:00:00</span>
         </div>
+        <div id="welcome-message" class="hidden">Welcome back!</div>
     </div>
-    <div id="welcome-message" class="hidden">Welcome back!</div>
-    <main>
-        <p>This is some additional content on your web page.</p>
-    </main>
-    <footer>
-        <p>&copy; 2023 Screen Break Timer</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
-
