@@ -1,21 +1,40 @@
-// JavaScript for the "Pro" badge
-const proBadge = document.querySelector('.pro-badge');
+let timer;
+let isRunning = false;
+let seconds = 0;
 
-// Function to show the "Pro" badge
-function showProBadge() {
-    proBadge.style.display = 'block';
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
-// Function to hide the "Pro" badge
-function hideProBadge() {
-    proBadge.style.display = 'none';
+function startTimer() {
+    if (!isRunning) {
+        const userInput = prompt('Enter timer duration in seconds:');
+        if (userInput !== null && !isNaN(userInput) && userInput > 0) {
+            seconds = parseInt(userInput);
+            timer = setInterval(function () {
+                seconds--;
+                document.getElementById('countdown').textContent = formatTime(seconds);
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    isRunning = false;
+                    document.getElementById('countdown').textContent = '00:00:00';
+                    showWelcomeMessage(); // Display the welcome message
+                }
+            }, 1000);
+            isRunning = true;
+        } else {
+            alert('Invalid input. Please enter a valid number greater than 0.');
+        }
+    }
 }
 
-// Function to prompt the user for the duration
-function getDuration() {
-    let userDuration = prompt("Enter the duration in minutes (e.g., 20):");
+function showWelcomeMessage() {
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    welcomeMessage.style.display = 'block';
+}
 
-    // Validate and set the duration
-    if (userDuration && !isNaN(userDuration) && userDuration > 0) {
-        userDuration = parseInt(userDuration);
-        startTimer(userDuration * 60); // Start the timer with
+// Start the timer when the page loads
+startTimer();
