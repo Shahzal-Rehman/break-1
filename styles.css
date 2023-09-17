@@ -21,7 +21,7 @@ body {
     }
 }
 
-/* Lines moving in the background */
+/* Create lightning bolt-like lines */
 .lines {
     position: absolute;
     top: 0;
@@ -29,52 +29,44 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1; /* Place the lines behind other content */
-    background: linear-gradient(0deg, transparent 40%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0.1) 60%, transparent 60%);
-    background-size: 100% 60px; /* Adjust the height and spacing of the lines */
     animation: moveLines 10s linear infinite; /* Adjust the animation duration as needed */
 }
 
 @keyframes moveLines {
-    0% {
-        background-position: 0 0;
+    0%, 100% {
+        transform: translateY(-100px) rotate(0deg); /* Start and end position of lines */
+        opacity: 0; /* Start and end opacity of lines (invisible) */
     }
-    100% {
-        background-position: 0 60px; /* Adjust the background-position to control line movement */
+    50% {
+        transform: translateY(100px) rotate(360deg); /* Middle position of lines */
+        opacity: 1; /* Middle opacity of lines (visible) */
     }
 }
 
+/* Timer container styles (unchanged) */
 .timer-container {
-    width: 300px; /* Increase the size of the circle */
-    height: 300px; /* Increase the size of the circle */
-    background-color: rgba(119, 119, 119, 0.2); /* Light gray circle background */
-    border-radius: 50%; /* Make it a circle */
+    width: 300px;
+    height: 300px;
+    background-color: rgba(119, 119, 119, 0.2);
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeInOutBackground 4s alternate infinite; /* Apply fade-in and fade-out animation to the circle background */
-}
-
-@keyframes fadeInOutBackground {
-    0%, 100% {
-        background-color: rgba(119, 119, 119, 0.2); /* Start and end with a light gray background */
-    }
-    50% {
-        background-color: rgba(85, 85, 85, 0.2); /* Middle of animation with a darker gray background */
-    }
+    animation: fadeInOutBackground 4s alternate infinite;
 }
 
 #countdown {
-    font-size: 3rem; /* Increase the timer font size */
-    color: #fff; /* White color for the timer text */
+    font-size: 3rem;
+    color: #fff;
 }
 
-/* Fade in and out animation for the background outside the circle */
+/* Fade in and out animation for the background outside the circle (unchanged) */
 @keyframes fadeInOutBackgroundOutsideCircle {
     0%, 100% {
-        background-color: rgba(0, 0, 0, 0.8); /* Start and end with a nearly black background */
+        background-color: rgba(0, 0, 0, 0.8);
     }
     50% {
-        background-color: rgba(0, 0, 0, 0.6); /* Middle of animation with a slightly lighter background */
+        background-color: rgba(0, 0, 0, 0.6);
     }
 }
 
@@ -84,6 +76,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Initial background color */
-    animation: fadeInOutBackgroundOutsideCircle 6s alternate infinite; /* Apply fade-in and fade-out animation to the background outside the circle */
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeInOutBackgroundOutsideCircle 6s alternate infinite;
+}
+
+.welcome-message {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
 }
