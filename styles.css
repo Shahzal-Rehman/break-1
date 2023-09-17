@@ -14,14 +14,14 @@ body {
 /* Fade in and out animation for the circle background */
 @keyframes fadeInOutBackground {
     0%, 100% {
-        background-color: rgba(119, 119, 119, 0.2); /* Start and end with a light gray background */
+        background-color: rgba(85, 85, 85, 0.4); /* Start and end with a brighter gray background */
     }
     50% {
-        background-color: rgba(85, 85, 85, 0.2); /* Middle of animation with a darker gray background */
+        background-color: rgba(68, 68, 68, 0.4); /* Middle of animation with a slightly darker gray background */
     }
 }
 
-/* Create lightning bolt-like lines */
+/* Create lightning bolt-like lines (unchanged) */
 .lines {
     position: absolute;
     top: 0;
@@ -43,11 +43,11 @@ body {
     }
 }
 
-/* Timer container styles (unchanged) */
+/* Timer container styles with a brighter circle color */
 .timer-container {
     width: 300px;
     height: 300px;
-    background-color: rgba(119, 119, 119, 0.2);
+    background-color: rgba(85, 85, 85, 0.4); /* Brighter gray circle background */
     border-radius: 50%;
     display: flex;
     justify-content: center;
