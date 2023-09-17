@@ -1,27 +1,26 @@
 /* Add your custom styles here */
 body {
     margin: 0;
-    padding: 0;
-    background-color: #000; /* Black background color */
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh; /* Make the body full height of the viewport */
-    overflow: hidden; /* Hide scroll bars and content outside the viewport */
-    position: relative; /* Position for the lines */
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0); /* Initial background color with no opacity */
+    animation: fadeInBackground 4s ease-in-out forwards; /* Apply fade-in animation to the body background */
 }
 
-/* Fade in and out animation for the circle background */
-@keyframes fadeInOutBackground {
-    0%, 100% {
-        background-color: rgba(85, 85, 85, 0.4); /* Start and end with a brighter gray background */
+/* Fade in animation for the body background */
+@keyframes fadeInBackground {
+    0% {
+        background-color: rgba(0, 0, 0, 0); /* Start with no opacity (transparent) */
     }
-    50% {
-        background-color: rgba(68, 68, 68, 0.4); /* Middle of animation with a slightly darker gray background */
+    100% {
+        background-color: rgba(0, 0, 0, 0.8); /* End with a nearly black background */
     }
 }
 
-/* Create lightning bolt-like lines (unchanged) */
+/* Create lightning bolt-like lines */
 .lines {
     position: absolute;
     top: 0;
@@ -43,18 +42,40 @@ body {
     }
 }
 
-/* Timer container styles with a brighter circle color */
+/* Timer container styles with a changing circle color */
 .timer-container {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(85, 85, 85, 0.4); /* Brighter gray circle background */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeInOutBackground 4s alternate infinite;
+    position: relative;
+    animation: changeCircleColor 10s linear infinite; /* Apply color change animation to the circle */
 }
 
+@keyframes changeCircleColor {
+    0% {
+        background-color: rgba(85, 85, 85, 0.4); /* Start with one color */
+    }
+    50% {
+        background-color: rgba(68, 68, 68, 0.4); /* Middle of animation with another color */
+    }
+    100% {
+        background-color: rgba(85, 85, 85, 0.4); /* End with the initial color */
+    }
+}
+
+.timer {
+    font-size: 4rem;
+    color: #fff;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Rest of the existing styles (unchanged) */
 #countdown {
     font-size: 3rem;
     color: #fff;
