@@ -11,37 +11,24 @@ function hideProBadge() {
     proBadge.style.display = 'none';
 }
 
-// Add a call to showProBadge() to display the badge initially
-showProBadge();
+// Function to prompt the user for the duration
+function getDuration() {
+    const userDuration = prompt("Enter the duration in minutes (e.g., 20):");
 
-// Rest of your existing JavaScript code for the timer
-const countdownElement = document.getElementById('countdown');
-const welcomeMessage = document.getElementById('welcomeMessage');
-let seconds = 20 * 60; // 20 minutes
-let timer;
-
-function updateCountdown() {
-    countdownElement.textContent = formatTime(seconds);
-    seconds--;
-
-    if (seconds < 0) {
-        clearInterval(timer);
-        document.body.style.backgroundColor = '#000';
-        // Show the welcome message when the timer reaches 0
-        welcomeMessage.style.display = 'block';
-        // Hide the "Pro" badge
-        hideProBadge();
-        return; // Leave this return statement here
+    // Validate and set the duration
+    if (userDuration && !isNaN(userDuration) && userDuration > 0) {
+        seconds = userDuration * 60;
+        countdownElement.textContent = formatTime(seconds);
+    } else {
+        // Use the default duration if invalid input
+        seconds = 20 * 60; // 20 minutes
+        countdownElement.textContent = formatTime(seconds);
     }
-
-    const brightness = (100 - (seconds / 20) * 5) + '%';
-    document.body.style.backgroundColor = `hsl(0, 0%, ${brightness})`;
 }
 
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
+// Add a call to getDuration() to prompt the user
+getDuration();
 
-timer = setInterval(updateCountdown, 1000); // Update countdown every second
+// Rest of your existing JavaScript code for the timer (unchanged)
+
+// ... (existing timer code)
