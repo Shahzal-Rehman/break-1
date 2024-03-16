@@ -1,110 +1,100 @@
-/* Add your custom styles here */
+/* CSS Styles */
 body {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0); /* Initial background color with no opacity */
-    animation: fadeInBackground 4s ease-in-out forwards; /* Apply fade-in animation to the body background */
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #eef;
+    color: #333;
+    transition: background-color 0.5s, color 0.5s;
 }
 
-/* Fade in animation for the body background */
-@keyframes fadeInBackground {
-    0% {
-        background-color: rgba(0, 0, 0, 0); /* Start with no opacity (transparent) */
-    }
-    100% {
-        background-color: rgba(0, 0, 0, 0.8); /* End with a nearly black background */
-    }
+.container {
+    width: 80%;
+    margin: 0 auto;
 }
 
-/* Create lightning bolt-like lines */
-.lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Place the lines behind other content */
-    animation: moveLines 10s linear infinite; /* Adjust the animation duration as needed */
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
 }
 
-@keyframes moveLines {
-    0%, 100% {
-        transform: translateY(-100px) rotate(0deg); /* Start and end position of lines */
-        opacity: 0; /* Start and end opacity of lines (invisible) */
-    }
-    50% {
-        transform: translateY(100px) rotate(360deg); /* Middle position of lines */
-        opacity: 1; /* Middle opacity of lines (visible) */
-    }
+.header h1 {
+    margin: 0;
 }
 
-/* Timer container styles with a changing circle color */
-.timer-container {
-    position: relative;
-    animation: changeCircleColor 10s linear infinite; /* Apply color change animation to the circle */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes changeCircleColor {
-    0% {
-        background-color: rgba(85, 85, 85, 0.4); /* Start with one color */
-    }
-    50% {
-        background-color: rgba(68, 68, 68, 0.4); /* Middle of animation with another color */
-    }
-    100% {
-        background-color: rgba(85, 85, 85, 0.4); /* End with the initial color */
-    }
+nav ul li {
+    display: inline;
+    margin-right: 20px;
 }
 
-.timer {
-    font-size: 4rem;
-    color: #fff;
-    animation: fadeIn 1s ease-in-out forwards;
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+nav ul li a:hover {
+    color: #eee;
 }
 
-/* Rest of the existing styles (unchanged) */
-#countdown {
-    font-size: 3rem;
-    color: #fff;
+.main-content {
+    padding: 50px 0;
 }
 
-/* Fade in and out animation for the background outside the circle (unchanged) */
-@keyframes fadeInOutBackgroundOutsideCircle {
-    0%, 100% {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    50% {
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+.section-about, .section-portfolio {
+    padding: 50px 0;
 }
 
-.background-outside-circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeInOutBackgroundOutsideCircle 6s alternate infinite;
-}
-
-.welcome-message {
-    display: none;
-    font-size: 24px;
-    color: #fff;
-    margin-top: 20px;
+.footer {
+    background-color: #007bff;
+    color: white;
     text-align: center;
+    padding: 20px 0;
+}
+
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+    background-color: #0056b3;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #eee;
+}
+
+.dark-mode .footer,
+.dark-mode .header {
+    background-color: #900;
+}
+
+.dark-mode nav ul li a {
+    color: #eee;
+}
+
+.dark-mode-toggle.dark-mode {
+    background-color: #900;
+}
+
+.dark-mode-toggle.dark-mode:hover {
+    background-color: #600;
 }
